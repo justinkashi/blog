@@ -1,33 +1,25 @@
 # La chambre d’étude
 
-Blog littéraire en français conçu pour publier des essais, des critiques, des textes de philosophie et des livres.
+Blog littéraire en français pour publier des textes de philosophie, des essais, des critiques, des œuvres littéraires et des livres.
 
-## Modifier le contenu avec l’espace auteur
+## Utiliser l’espace auteur
 
-Le site utilise [Pages CMS](https://app.pagescms.org) pour offrir un formulaire d’édition sans code.
+L’auteur ouvre `https://justinkashi.github.io/blog/ecrire/`, saisit son mot de passe, puis utilise les formulaires en français. Il peut ajouter, modifier ou supprimer des textes et des livres, ainsi que modifier sa présentation. Le bouton **Publier les changements** met immédiatement le contenu à jour sur le site.
 
-1. Le propriétaire du dépôt installe l’application GitHub de Pages CMS pour le dépôt `justinkashi/blog`.
-2. L’auteur crée un compte GitHub et reçoit une invitation comme collaborateur du dépôt.
-3. L’auteur ouvre `https://app.pagescms.org`, se connecte avec GitHub et choisit le dépôt `blog`.
-4. Il ouvre **Contenu du site**, ajoute ou modifie ses textes, puis enregistre.
-5. GitHub Pages republie automatiquement le site après chaque enregistrement.
+L’auteur n’a pas besoin d’un compte GitHub ou Supabase. Sa session reste ouverte pendant douze heures dans l’onglet du navigateur. Le mot de passe n’est jamais enregistré dans le dépôt GitHub.
 
-Les champs de l’éditeur sont en français. Ils couvrent la biographie, les textes complets, les catégories, les livres et les liens de publication. Désactivez l’option `Texte d’exemple` ou `Fiche à compléter` quand le contenu réel est prêt.
+## Fonctionnement
 
-Le contenu éditorial est enregistré dans `contenu.json`. Le fichier `.pages.yml` décrit les formulaires affichés par Pages CMS.
+Le site public est hébergé sur GitHub Pages. Son contenu modifiable est conservé dans un projet Supabase distinct, protégé par Row Level Security. Le fichier `contenu.json` sert de copie de secours si Supabase est temporairement indisponible.
 
-Chaque texte possède un identifiant unique, une catégorie, une date, un titre, un résumé, un temps de lecture et son contenu complet. Les catégories créent automatiquement les boutons de filtrage.
+Le fichier `config.js` contient seulement l’adresse du projet et la clé **publishable** de Supabase. Supabase conçoit cette clé pour qu’elle soit intégrée aux sites publics. Elle ne donne pas les droits d’administration : les règles de la base autorisent seulement la lecture du contenu public et l’enregistrement par une session d’auteur valide.
+
+Les mots de passe, la clé secrète Supabase, la clé `service_role` et les fichiers `.env` ne doivent jamais être ajoutés au dépôt.
 
 ## Voir le site localement
-
-Ouvrez `index.html` dans un navigateur ou lancez un petit serveur local depuis ce dossier.
 
 ```powershell
 python -m http.server 8000
 ```
 
-Le site sera disponible à l’adresse `http://localhost:8000`.
-
-## Publier avec GitHub Pages
-
-Dans les réglages du dépôt GitHub, ouvrez **Pages**, choisissez **Deploy from a branch**, puis sélectionnez la branche `main` et le dossier `/ (root)`.
+Le site public sera disponible à `http://localhost:8000` et l’espace auteur à `http://localhost:8000/ecrire/`.

@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#f4efe6" />
+    <title>Espace d’écriture — La chambre d’étude</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="ecrire.css?v=1" />
+    <script src="../config.js?v=3" defer></script>
+    <script src="ecrire.js?v=1" defer></script>
+  </head>
+  <body>
+    <header class="author-header">
+      <a class="brand" href="../">
+        <span class="brand-mark" aria-hidden="true">C</span>
+        <span>La chambre d’étude</span>
+      </a>
+      <a class="back-link" href="../">Voir le site <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section id="connexion" class="login-shell" aria-labelledby="connexion-titre">
+        <form id="form-connexion" class="login-card">
+          <p class="eyebrow">Espace privé</p>
+          <h1 id="connexion-titre">Entrer dans l’espace d’écriture</h1>
+          <p>Écrivez, corrigez et publiez vos textes ici. Aucun compte n’est nécessaire.</p>
+          <label for="mot-de-passe">Mot de passe</label>
+          <div class="password-row">
+            <input id="mot-de-passe" name="password" type="password" autocomplete="current-password" required />
+            <button id="voir-mot-de-passe" class="quiet-button" type="button">Afficher</button>
+          </div>
+          <button class="primary-button full-button" type="submit">Entrer</button>
+          <p id="erreur-connexion" class="message error-message" role="alert" hidden></p>
+        </form>
+      </section>
+
+      <section id="atelier" class="workspace" hidden>
+        <div class="workspace-heading">
+          <div>
+            <p class="eyebrow">Espace d’écriture</p>
+            <h1>Bonjour.</h1>
+            <p>Choisissez ce que vous souhaitez modifier. Rien ne change sur le site avant que vous appuyiez sur « Publier les changements ».</p>
+          </div>
+          <button id="deconnexion" class="quiet-button" type="button">Se déconnecter</button>
+        </div>
+
+        <nav class="editor-tabs" aria-label="Sections de l’espace d’écriture">
+          <button class="tab-button active" type="button" data-section="textes" aria-pressed="true">Mes textes</button>
+          <button class="tab-button" type="button" data-section="livres" aria-pressed="false">Mes livres</button>
+          <button class="tab-button" type="button" data-section="auteur" aria-pressed="false">À propos de moi</button>
+        </nav>
+
+        <section id="section-textes" class="editor-section">
+          <div class="section-intro">
+            <div>
+              <h2>Mes textes</h2>
+              <p>Ajoutez un nouveau texte ou ouvrez un texte existant pour le corriger.</p>
+            </div>
+            <button id="nouveau-texte" class="primary-button" type="button">+ Nouveau texte</button>
+          </div>
+          <div id="liste-edition-textes" class="entry-list"></div>
+
+          <form id="form-texte" class="edit-card" hidden>
+            <div class="form-heading">
+              <div>
+                <p class="eyebrow">Texte</p>
+                <h3 id="titre-form-texte">Nouveau texte</h3>
+              </div>
+              <button class="quiet-button" type="button" data-fermer-form="texte">Fermer</button>
+            </div>
+            <input id="texte-index" type="hidden" />
+            <div class="field-grid">
+              <label class="wide-field">
+                Titre
+                <input id="texte-titre" type="text" required />
+              </label>
+              <label>
+                Catégorie
+                <select id="texte-categorie" required>
+                  <option>Philosophie</option>
+                  <option>Essai</option>
+                  <option>Critique</option>
+                  <option>Littérature</option>
+                </select>
+              </label>
+              <label>
+                Date affichée
+                <input id="texte-date" type="text" placeholder="12 octobre 2026" required />
+              </label>
+              <label class="wide-field">
+                Résumé
+                <textarea id="texte-resume" rows="3" required></textarea>
+              </label>
+              <label>
+                Temps de lecture
+                <input id="texte-lecture" type="text" placeholder="6 min" required />
+              </label>
+              <label class="check-field">
+                <input id="texte-exemple" type="checkbox" />
+                Afficher « Texte d’exemple »
+              </label>
+              <label class="wide-field">
+                Texte complet
+                <span class="field-help">Laissez une ligne vide entre deux paragraphes.</span>
+                <textarea id="texte-contenu" class="writing-area" rows="18" required></textarea>
+              </label>
+            </div>
+            <div class="form-actions">
+              <button class="primary-button" type="submit">Garder ce texte</button>
+              <button id="supprimer-texte" class="danger-button" type="button" hidden>Supprimer ce texte</button>
+            </div>
+          </form>
+        </section>
+
+        <section id="section-livres" class="editor-section" hidden>
+          <div class="section-intro">
+            <div>
+              <h2>Mes livres</h2>
+              <p>Présentez les livres publiés et les ouvrages en préparation.</p>
+            </div>
+            <button id="nouveau-livre" class="primary-button" type="button">+ Nouveau livre</button>
+          </div>
+          <div id="liste-edition-livres" class="entry-list"></div>
+
+          <form id="form-livre" class="edit-card" hidden>
+            <div class="form-heading">
+              <div>
+                <p class="eyebrow">Livre</p>
+                <h3 id="titre-form-livre">Nouveau livre</h3>
+              </div>
+              <button class="quiet-button" type="button" data-fermer-form="livre">Fermer</button>
+            </div>
+            <input id="livre-index" type="hidden" />
+            <div class="field-grid">
+              <label class="wide-field">
+                Titre
+                <input id="livre-titre" type="text" required />
+              </label>
+              <label>
+                Genre
+                <input id="livre-genre" type="text" placeholder="Essai" required />
+              </label>
+              <label>
+                Année ou état
+                <input id="livre-annee" type="text" placeholder="À paraître" required />
+              </label>
+              <label class="wide-field">
+                Présentation
+                <textarea id="livre-description" rows="5" required></textarea>
+              </label>
+              <label class="wide-field">
+                Lien vers le livre
+                <input id="livre-lien" type="url" placeholder="https://…" />
+              </label>
+              <label>
+                Couleur de couverture
+                <select id="livre-couleur">
+                  <option value="ocre">Ocre</option>
+                  <option value="bleu">Bleu</option>
+                </select>
+              </label>
+              <label class="check-field">
+                <input id="livre-exemple" type="checkbox" />
+                Afficher « Fiche à compléter »
+              </label>
+            </div>
+            <div class="form-actions">
+              <button class="primary-button" type="submit">Garder ce livre</button>
+              <button id="supprimer-livre" class="danger-button" type="button" hidden>Supprimer ce livre</button>
+            </div>
+          </form>
+        </section>
+
+        <section id="section-auteur" class="editor-section" hidden>
+          <div class="section-intro">
+            <div>
+              <h2>À propos de moi</h2>
+              <p>Ces renseignements apparaissent à la fin du site.</p>
+            </div>
+          </div>
+          <form id="form-auteur" class="edit-card always-open">
+            <div class="field-grid">
+              <label class="wide-field">
+                Présentation principale
+                <textarea id="auteur-presentation" rows="5" required></textarea>
+              </label>
+              <label class="wide-field">
+                Présentation complémentaire
+                <textarea id="auteur-suite" rows="5" required></textarea>
+              </label>
+              <label class="wide-field">
+                Adresse courriel
+                <input id="auteur-courriel" type="email" required />
+              </label>
+            </div>
+            <button class="primary-button" type="submit">Garder ces renseignements</button>
+          </form>
+        </section>
+
+        <div class="publish-bar">
+          <div>
+            <strong id="etat-modifications">Aucun changement en attente.</strong>
+            <span id="date-publication"></span>
+          </div>
+          <button id="publier" class="publish-button" type="button">Publier les changements</button>
+        </div>
+        <p id="message-publication" class="message" role="status" aria-live="polite" hidden></p>
+      </section>
+    </main>
+  </body>
+</html>
