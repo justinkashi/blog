@@ -472,6 +472,11 @@ a {
   margin: 0;
 }
 
+.footer-links {
+  display: flex;
+  gap: 2rem;
+}
+
 .reader-dialog {
   width: min(820px, calc(100% - 2rem));
   max-height: calc(100vh - 2rem);
@@ -667,6 +672,12 @@ a {
   }
 
   .site-footer {
+    gap: 1rem;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer-links {
     gap: 1rem;
     align-items: flex-start;
     flex-direction: column;

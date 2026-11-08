@@ -2,16 +2,21 @@
 
 Blog littéraire en français conçu pour publier des essais, des critiques, des textes de philosophie et des livres.
 
-## Modifier le contenu
+## Modifier le contenu avec l’espace auteur
 
-Tout le contenu éditorial se trouve dans `contenu.js`.
+Le site utilise [Pages CMS](https://app.pagescms.org) pour offrir un formulaire d’édition sans code.
 
-- Modifiez les deux paragraphes de la section `auteur` et remplacez l’adresse courriel.
-- Remplacez les quatre textes d’exemple dans le tableau `textes`.
-- Remplacez les fiches temporaires du tableau `livres` par les ouvrages réels.
-- Passez `exemple` à `false` pour retirer les étiquettes qui signalent le contenu de démonstration.
+1. Le propriétaire du dépôt installe l’application GitHub de Pages CMS pour le dépôt `justinkashi/blog`.
+2. L’auteur crée un compte GitHub et reçoit une invitation comme collaborateur du dépôt.
+3. L’auteur ouvre `https://app.pagescms.org`, se connecte avec GitHub et choisit le dépôt `blog`.
+4. Il ouvre **Contenu du site**, ajoute ou modifie ses textes, puis enregistre.
+5. GitHub Pages republie automatiquement le site après chaque enregistrement.
 
-Chaque texte possède un identifiant unique, une catégorie, une date, un titre, un résumé, un temps de lecture et une liste de paragraphes. Les catégories créent automatiquement les boutons de filtrage.
+Les champs de l’éditeur sont en français. Ils couvrent la biographie, les textes complets, les catégories, les livres et les liens de publication. Désactivez l’option `Texte d’exemple` ou `Fiche à compléter` quand le contenu réel est prêt.
+
+Le contenu éditorial est enregistré dans `contenu.json`. Le fichier `.pages.yml` décrit les formulaires affichés par Pages CMS.
+
+Chaque texte possède un identifiant unique, une catégorie, une date, un titre, un résumé, un temps de lecture et son contenu complet. Les catégories créent automatiquement les boutons de filtrage.
 
 ## Voir le site localement
 

@@ -1,0 +1,124 @@
+media:
+  input: media
+  output: /blog/media
+
+content:
+  - name: contenu
+    label: Contenu du site
+    type: file
+    path: contenu.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: auteur
+        label: Présentation de l’auteur
+        type: object
+        fields:
+          - name: presentation
+            label: Texte principal
+            type: text
+            required: true
+          - name: suite
+            label: Texte complémentaire
+            type: text
+            required: true
+          - name: courriel
+            label: Adresse courriel
+            type: string
+            required: true
+      - name: textes
+        label: Textes et essais
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{titre}"
+        fields:
+          - name: titre
+            label: Titre
+            type: string
+            required: true
+          - name: id
+            label: Identifiant pour l’adresse
+            type: string
+            required: true
+            description: Utiliser des lettres minuscules et des tirets, par exemple habiter-le-temps.
+            pattern:
+              regex: "^[a-z0-9-]+$"
+              message: Utilisez seulement des lettres minuscules, des chiffres et des tirets.
+          - name: categorie
+            label: Catégorie
+            type: select
+            required: true
+            options:
+              values: [Philosophie, Essai, Critique, Littérature]
+          - name: date
+            label: Date à afficher
+            type: string
+            required: true
+            description: Par exemple 12 octobre 2026.
+          - name: resume
+            label: Résumé
+            type: text
+            required: true
+          - name: lecture
+            label: Temps de lecture
+            type: string
+            required: true
+            description: Par exemple 6 min.
+          - name: contenu
+            label: Texte complet
+            type: rich-text
+            required: true
+            options:
+              format: html
+              media: false
+              switcher: false
+          - name: exemple
+            label: Afficher l’étiquette « Texte d’exemple »
+            type: boolean
+      - name: livres
+        label: Livres
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{titre}"
+        fields:
+          - name: titre
+            label: Titre
+            type: string
+            required: true
+          - name: genre
+            label: Genre
+            type: string
+            required: true
+          - name: annee
+            label: Année ou état de publication
+            type: string
+            required: true
+          - name: description
+            label: Présentation
+            type: text
+            required: true
+          - name: lien
+            label: Lien vers le livre
+            type: string
+          - name: couleur
+            label: Couleur de couverture
+            type: select
+            required: true
+            options:
+              values: [ocre, bleu]
+          - name: exemple
+            label: Afficher l’étiquette « Fiche à compléter »
+            type: boolean
+
+settings:
+  content:
+    merge: true
+  commit:
+    identity: user
+    templates:
+      update: "Mise à jour de {path} par {userName}"

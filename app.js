@@ -1,4 +1,4 @@
-const contenu = CONTENU_DU_SITE;
+let contenu;
 const listeTextes = document.querySelector("#liste-textes");
 const listeLivres = document.querySelector("#liste-livres");
 const filtres = document.querySelector("#filtres");
@@ -93,7 +93,7 @@ function ouvrirTexte(id) {
   document.querySelector("#lecteur-meta").textContent = `${texte.categorie} · ${texte.date} · ${texte.lecture}`;
   document.querySelector("#lecteur-titre").textContent = texte.titre;
   document.querySelector("#lecteur-chapeau").textContent = texte.resume;
-  document.querySelector("#lecteur-contenu").innerHTML = texte.contenu.map((paragraphe) => `<p>${paragraphe}</p>`).join("");
+  document.querySelector("#lecteur-contenu").innerHTML = texte.contenu;
   lecteur.showModal();
 }
 
@@ -129,11 +129,21 @@ navigation.addEventListener("click", () => {
   navigation.classList.remove("open");
 });
 
-document.querySelector("#bio-principale").textContent = contenu.auteur.presentation;
-document.querySelector("#bio-suite").textContent = contenu.auteur.suite;
-document.querySelector("#contact").href = `mailto:${contenu.auteur.courriel}`;
 document.querySelector("#annee").textContent = new Date().getFullYear();
 
-creerFiltres();
-afficherTextes();
-afficherLivres();
+async function initialiser() {
+  const reponse = await fetch("./contenu.json");
+  if (!reponse.ok) throw new Error("Le contenu du site n’a pas pu être chargé.");
+
+  contenu = await reponse.json();
+  document.querySelector("#bio-principale").textContent = contenu.auteur.presentation;
+  document.querySelector("#bio-suite").textContent = contenu.auteur.suite;
+  document.querySelector("#contact").href = `mailto:${contenu.auteur.courriel}`;
+  creerFiltres();
+  afficherTextes();
+  afficherLivres();
+}
+
+initialiser().catch((erreur) => {
+  listeTextes.innerHTML = `<p class="empty-state">${erreur.message}</p>`;
+});
