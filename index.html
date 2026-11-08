@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Une bibliothèque personnelle de philosophie, d’essais, de critiques et de littérature."
+    />
+    <meta name="theme-color" content="#f0eadf" />
+    <title>La chambre d’étude</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="contenu.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+    <header class="site-header">
+      <a class="brand" href="#accueil" aria-label="La chambre d’étude, accueil">
+        <span class="brand-mark" aria-hidden="true">C</span>
+        <span>La chambre d’étude</span>
+      </a>
+
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="navigation">
+        Menu
+      </button>
+
+      <nav id="navigation" class="navigation" aria-label="Navigation principale">
+        <a href="#textes">Textes</a>
+        <a href="#livres">Livres</a>
+        <a href="#a-propos">À propos</a>
+      </nav>
+    </header>
+
+    <main id="contenu">
+      <section id="accueil" class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Philosophie · Essais · Critique · Littérature</p>
+          <h1 id="hero-title">Lire pour mieux voir. Écrire pour ne pas oublier.</h1>
+          <p class="hero-intro">
+            Un lieu consacré aux idées, aux livres et aux questions qui continuent de travailler
+            longtemps après la lecture.
+          </p>
+          <a class="text-link" href="#textes">Découvrir les textes <span aria-hidden="true">↓</span></a>
+        </div>
+
+        <blockquote class="manifesto">
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <p>Une pensée commence souvent par une phrase que l’on refuse de laisser passer.</p>
+        </blockquote>
+      </section>
+
+      <section id="textes" class="section writings-section" aria-labelledby="textes-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-number">01</p>
+            <h2 id="textes-title">Textes</h2>
+          </div>
+          <p>Notes, essais et lectures critiques.</p>
+        </div>
+
+        <div class="writing-tools">
+          <div id="filtres" class="filters" aria-label="Filtrer les textes"></div>
+          <label class="search-field">
+            <span class="sr-only">Rechercher dans les textes</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5"></circle>
+              <path d="m16 16 4 4"></path>
+            </svg>
+            <input id="recherche" type="search" placeholder="Rechercher" autocomplete="off" />
+          </label>
+        </div>
+
+        <div id="liste-textes" class="writing-list" aria-live="polite"></div>
+        <p id="aucun-resultat" class="empty-state" hidden>Aucun texte ne correspond à cette recherche.</p>
+      </section>
+
+      <section id="livres" class="section books-section" aria-labelledby="livres-title">
+        <div class="section-heading light-heading">
+          <div>
+            <p class="section-number">02</p>
+            <h2 id="livres-title">Livres</h2>
+          </div>
+          <p>Ouvrages publiés et projets en cours.</p>
+        </div>
+        <div id="liste-livres" class="book-grid"></div>
+      </section>
+
+      <section id="a-propos" class="section about-section" aria-labelledby="a-propos-title">
+        <div class="about-label">
+          <p class="section-number">03</p>
+          <h2 id="a-propos-title">À propos</h2>
+        </div>
+        <div class="about-copy">
+          <p class="about-lead" id="bio-principale"></p>
+          <p id="bio-suite"></p>
+          <a id="contact" class="text-link" href="mailto:adresse@exemple.fr">
+            Écrire à l’auteur <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="annee"></span> La chambre d’étude</p>
+      <a href="#accueil">Retour en haut <span aria-hidden="true">↑</span></a>
+    </footer>
+
+    <dialog id="lecteur" class="reader-dialog" aria-labelledby="lecteur-titre">
+      <button class="dialog-close" type="button" aria-label="Fermer la lecture">Fermer</button>
+      <article>
+        <p id="lecteur-meta" class="article-meta"></p>
+        <h2 id="lecteur-titre"></h2>
+        <p id="lecteur-chapeau" class="article-lead"></p>
+        <div id="lecteur-contenu" class="article-body"></div>
+      </article>
+    </dialog>
+  </body>
+</html>
